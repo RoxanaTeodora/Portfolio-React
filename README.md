@@ -68,3 +68,19 @@ This section has moved here: [https://facebook.github.io/create-react-app/docs/d
 ### `npm run build` fails to minify
 
 This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+
+### Portofolio
+
+he portfolio page will be a single page that will contain the following sections:
+
+A header with external links to social media accounts and internal links to other sections of the page
+
+A landing section with an avatar picture and a short bio
+
+A section to display your featured projects as cards in a grid fashion
+
+A contact me section with a form to allow visitors to contact you
+
+### Libraries
+
+Chakra UI, Formik, Yup and Fontawesome
