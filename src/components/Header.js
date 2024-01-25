@@ -1,4 +1,4 @@
-// import React, { useEffect, useRef } from "react";
+import React, { useEffect, useRef } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faEnvelope } from "@fortawesome/free-solid-svg-icons";
 import {
@@ -34,6 +34,8 @@ const socials = [
 ];
 
 const Header = () => {
+  const headerRef = useRef(null);
+  const prevScrollY = useRef(0);
   const handleClick = (anchor) => () => {
     const id = `${anchor}-section`;
     const element = document.getElementById(id);
@@ -44,9 +46,35 @@ const Header = () => {
       });
     }
   };
+  useEffect(() => {
+    const handleScroll = () => {
+      const currentScrollY = window.scrollY;
+
+      // Check the scroll direction
+      if (currentScrollY > prevScrollY.current) {
+        // Scrolling down, hide the header
+        headerRef.current.style.transform = "translateY(-200px)";
+      } else {
+        // Scrolling up, show the header
+        headerRef.current.style.transform = "translateY(0)";
+      }
+
+      // Update the previous scroll position
+      prevScrollY.current = currentScrollY;
+    };
+
+    // Add scroll event listener
+    window.addEventListener("scroll", handleScroll);
+
+    // Cleanup: remove event listener when the component is unmounted
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+    };
+  }, []);
 
   return (
     <Box
+      ref={headerRef}
       position="fixed"
       top={0}
       left={0}
