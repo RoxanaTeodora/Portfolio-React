@@ -21,49 +21,9 @@ const LandingSection = () => {
   const { isLoading, response, submit } = useSubmit();
   const { onOpen } = useAlertContext();
 
-  // const formik = useFormik({
-  //   initialValues: { firstName: "", email: "", type: "", comment: "" },
-  //   onSubmit: async (values) => {
-  //     try {
-  //       // Call your submit function here, assuming it's an asynchronous function.
-  //       await submit(values);
-  //       // Form submission successful, you can reset the form if needed.
-  //       onOpen(
-  //         "success",
-  //         `Your message has been sent successfully, ${values.firstName}!`
-  //       );
-  //       formik.resetForm();
-  //     } catch (error) {
-  //       // Handle submission error, if necessary.
-  //     }
-  //   },
   const formik = useFormik({
     initialValues: { firstName: "", email: "", type: "", comment: "" },
-    onSubmit: async (values) => {
-      try {
-        // Call the submit function and wait for the response.
-        const apiResponse = await submit(values);
-
-        if (apiResponse.type === "success") {
-          // Display a success alert with the user's first name.
-          onOpen(
-            "success",
-            `Your message has been sent successfully, ${values.firstName}!`
-          );
-
-          // Reset the form.
-          formik.resetForm();
-        } else {
-          // Display an error alert with the API response message.
-          onOpen("error", `An error occurred: ${apiResponse.message}`);
-        }
-      } catch (error) {
-        // Handle submission error, if necessary.
-        console.error("Submission error:", error);
-        // Display a generic error alert.
-        onOpen("error", "An unexpected error occurred during submission.");
-      }
-    },
+    onSubmit: (values) => {},
     validationSchema: Yup.object({
       firstName: Yup.string().required("First Name is required"),
       email: Yup.string()
@@ -152,7 +112,7 @@ const LandingSection = () => {
   return (
     <FullScreenSection
       isDarkBackground
-      backgroundColor="#512DA8"
+      backgroundColor="#62565c"
       py={16}
       spacing={8}
     >
@@ -182,10 +142,12 @@ const LandingSection = () => {
               >
                 <FormLabel htmlFor="type">Type of enquiry</FormLabel>
                 <Select {...formik.getFieldProps("type")}>
-                  <option value="" disabled>
+                  <option value="" disabled backgroundColor="black">
                     Select an option
                   </option>
-                  <option value="hireMe">Freelance project proposal</option>
+                  <option value="hireMe" color="black">
+                    Freelance project proposal
+                  </option>
                   <option value="openSource">
                     Open source consultancy session
                   </option>
@@ -202,7 +164,8 @@ const LandingSection = () => {
               </FormControl>
               <Button
                 type="submit"
-                colorScheme="purple"
+                backgroundColor="#d17147"
+                color="white"
                 width="full"
                 isLoading={isLoading}
               >

@@ -5,27 +5,26 @@ import Card from "./Card";
 
 const projects = [
   {
-    title: "React Space",
+    title: "Furniture market",
     description:
-      "Handy tool belt to create amazing AR components in a React app, with redux integration via middleware️",
+      "Explore, manage, and shop for furniture seamlessly with the React and Tailwind CSS website. Pages include Home, Admin, Cart, and Details for a smooth experience in presenting, adding, deleting, and selecting furniture.",
     getImageSrc: () => require("../images/photo1.jpg"),
   },
   {
-    title: "React Infinite Scroll",
+    title: "Weather App",
     description:
-      "A scrollable bottom sheet with virtualisation support, native animations at 60 FPS and fully implemented in JS land 🔥️",
+      "Find out the weather from any place by using a simple JavaScript application with AJAX techniques. ",
     getImageSrc: () => require("../images/photo2.jpg"),
   },
   {
-    title: "Photo Gallery",
+    title: "student gradebook App",
     description:
-      "A One-stop shop for photographers to share and monetize their photos, allowing them to have a second source of income",
+      "A student gradebook  that uses Dom manipulation for adding, deleting and ordering the students and the grades",
     getImageSrc: () => require("../images/photo3.jpg"),
   },
   {
-    title: "Event planner",
-    description:
-      "A mobile application for leisure seekers to discover unique events and activities in their city with a few taps",
+    title: "Restaurant Website",
+    description: "A restaurant website using React library coming soon...",
     getImageSrc: () => require("../images/photo4.jpg"),
   },
 ];
@@ -33,7 +32,7 @@ const projects = [
 const ProjectsSection = () => {
   return (
     <FullScreenSection
-      backgroundColor="#2A4365"
+      backgroundColor="#d17147"
       isDarkBackground
       p={8}
       alignItems="flex-start"

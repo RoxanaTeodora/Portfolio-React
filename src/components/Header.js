@@ -4,10 +4,9 @@ import { faEnvelope } from "@fortawesome/free-solid-svg-icons";
 import {
   faGithub,
   faLinkedin,
-  faMedium,
-  faStackOverflow,
+  // faMedium,
+  // faStackOverflow,
 } from "@fortawesome/free-brands-svg-icons";
-// import { Box, HStack, flexbox } from "@chakra-ui/react";
 import { Box, HStack } from "@chakra-ui/react";
 
 const socials = [
@@ -23,23 +22,36 @@ const socials = [
     icon: faLinkedin,
     url: "https://www.linkedin.com",
   },
-  {
-    icon: faMedium,
-    url: "https://medium.com",
-  },
-  {
-    icon: faStackOverflow,
-    url: "https://stackoverflow.com",
-  },
+  // {
+  //   icon: faMedium,
+  //   url: "https://medium.com",
+  // },
+  // {
+  //   icon: faStackOverflow,
+  //   url: "https://stackoverflow.com",
+  // },
 ];
 
 const Header = () => {
   const headerRef = useRef(null);
-  const prevScrollY = useRef(0);
+  // Se folosește hook-ul useRef pentru a crea o referință către elementul de antet (<Header>).
+  //Ref-urile sunt adesea utilizate pentru a obține acces la elemente DOM într-un mod funcțional
+  const prevScrollY = useRef("");
+  //ține evidența valorii anterioare a derulării paginii,SUS-JOS
+  //JOS HIDE THE HEADER
+  //SUS SHOW THE HEADER
   const handleClick = (anchor) => () => {
+    // Each a tag should have as children the name of the section: "Contact Me" and "Projects".
+    //When clicking on the link, the url should show the corresponding section.
+    //For example, when clicking on the "Contact Me" link, the url path should be /#contact-me. Also, the click should scroll to the corresponding section with a smooth animation. The code for that has been provided for you via the handleClick function. You need to hook that function with the a tag onClick event. Bear in mind the Projects section has an id called projects-section
+    // and the Contact Me section has an id called contactme-section.
+
     const id = `${anchor}-section`;
+    //linkurile au un id sub forma ${anchor}-section
     const element = document.getElementById(id);
     if (element) {
+      //Dacă elementul cu id mentionat a fost găsit, se utilizează metoda scrollIntoView
+      //va incepe un scroll smooth din partea superioară a elementului block-start
       element.scrollIntoView({
         behavior: "smooth",
         block: "start",
@@ -47,15 +59,18 @@ const Header = () => {
     }
   };
   useEffect(() => {
+    //funcția handleScroll este apelată de fiecare dată când utilizatorul derulează pagina
     const handleScroll = () => {
+      //Se obține poziția actuală a derulării orizontale în cadrul paginii
+
       const currentScrollY = window.scrollY;
 
-      // Check the scroll direction
+      //Se compară poziția actuală de derulare cu poziția anterioară pentru a determina direcția de derulare
       if (currentScrollY > prevScrollY.current) {
-        // Scrolling down, hide the header
-        headerRef.current.style.transform = "translateY(-200px)";
+        // Dacă utilizatorul se deplasează în jos, se ascunde antetul (translateY(-400px))
+        headerRef.current.style.transform = "translateY(-400px)";
       } else {
-        // Scrolling up, show the header
+        // headerRef.current.style.transform = "translateY(0)
         headerRef.current.style.transform = "translateY(0)";
       }
 
@@ -64,9 +79,10 @@ const Header = () => {
     };
 
     // Add scroll event listener
+    //Acesta va apela funcția handleScroll de fiecare dată când utilizatorul derulează pagina.
     window.addEventListener("scroll", handleScroll);
 
-    // Cleanup: remove event listener when the component is unmounted
+    // Cleanup: remove event listener
     return () => {
       window.removeEventListener("scroll", handleScroll);
     };
@@ -87,48 +103,48 @@ const Header = () => {
     >
       <Box color="white" maxWidth="1280px" margin="0 auto">
         <HStack
+          //px si py este spatiarea meniului
           px={16}
-          py={4}
+          py={5}
           justifyContent="space-between"
           alignItems="center"
         >
           <nav>
             <a href="mailto: hello@example.com">
-              {/* Add social media links based on the `socials` data */}
               <FontAwesomeIcon
                 icon={faEnvelope}
                 size="2x"
-                style={{ paddingRight: "15px" }}
+                style={{ paddingRight: "30px" }}
               />
             </a>
             <a href="https://github.com">
               <FontAwesomeIcon
                 icon={faGithub}
                 size="2x"
-                style={{ paddingRight: "15px" }}
+                style={{ paddingRight: "30px" }}
               />
             </a>
             <a href="https://www.linkedin.com">
               <FontAwesomeIcon
                 icon={faLinkedin}
                 size="2x"
-                style={{ paddingRight: "15px" }}
+                style={{ paddingRight: "30px" }}
               />
             </a>
-            <a href="https://medium.com">
+            {/* <a href="https://medium.com">
               <FontAwesomeIcon
                 icon={faMedium}
                 size="2x"
-                style={{ paddingRight: "15px" }}
+                style={{ paddingRight: "30px" }}
               />
             </a>
             <a href="https://stackoverflow.com">
               <FontAwesomeIcon
                 icon={faStackOverflow}
                 size="2x"
-                style={{ paddingRight: "15px" }}
+                style={{ paddingRight: "30px" }}
               />
-            </a>
+            </a> */}
           </nav>
           <nav>
             <HStack spacing={8}>
