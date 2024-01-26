@@ -17,6 +17,8 @@ const useSubmit = () => {
       await wait(2000);
       if (random < 0.5) {
         throw new Error("Something went wrong");
+        // Se simulează un răspuns de eșec dacă valoarea aleatoare este mai mică decât 0.5.
+        //În caz contrar, se continuă cu răspunsul de succes.
       }
       setResponse({
         type: "success",
@@ -27,8 +29,6 @@ const useSubmit = () => {
         type: "error",
         message: "Something went wrong, please try again later!",
       });
-    } finally {
-      setLoading(false);
     }
   };
 
